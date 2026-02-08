@@ -7,7 +7,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ChakraProvider value={system}>
-        <div style={{ padding: '1rem', minHeight: '100vh', background: 'var(--chakra-colors-surface-0)' }}>
+        <div style={{ padding: '1rem', minHeight: '100vh', background: 'var(--color-surface-0)' }}>
           <Story />
         </div>
       </ChakraProvider>

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Box, Flex, Text } from '@chakra-ui/react'
-import { styled } from '@chakra-ui/react'
+import { Box, Flex, Text, useRecipe } from '@chakra-ui/react'
 
 const meta: Meta = {
   title: 'Recipes/Card',
@@ -9,162 +8,164 @@ const meta: Meta = {
 export default meta
 type Story = StoryObj
 
-const Card = styled('div', {
-  base: {
-    background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
-    borderWidth: 'thin',
-    borderStyle: 'solid',
-    borderColor: 'border.subtle',
-    borderRadius: 'md',
-    padding: 'lg',
-    boxShadow: 'var(--shadow-sm)',
-  },
-  variants: {
-    variant: {
-      subtle: {
-        background: 'surface.1',
-        borderColor: 'border.subtle',
-        boxShadow: 'none',
-      },
-      elevated: {
-        background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
-        borderColor: 'border.strong',
-        boxShadow: 'var(--shadow-md)',
-      },
-      outline: {
-        background: 'transparent',
-        borderColor: 'border.strong',
-        boxShadow: 'none',
-      },
-      glow: {
-        background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
-        borderColor: 'primary.DEFAULT',
-        boxShadow: 'var(--shadow-md), var(--shadow-glow-primary)',
-      },
-    },
-    size: {
-      sm: {
-        padding: 'sm',
-        borderRadius: 'sm',
-      },
-      md: {
-        padding: 'md',
-        borderRadius: 'md',
-      },
-      lg: {
-        padding: 'lg',
-        borderRadius: 'lg',
-      },
-    },
-  },
-  defaultVariants: {
-    variant: 'elevated',
-    size: 'md',
-  },
-})
-
 export const Variants: Story = {
-  render: () => (
-    <Flex direction="column" gap="6">
-      <Box>
-        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-          Card Variants
-        </Text>
-        <Text fontSize="sm" color="text.muted" mb="4">
-          Different card styles for various use cases
-        </Text>
-      </Box>
-      <Flex gap="4" flexWrap="wrap">
-        <Card variant="subtle" style={{ width: '200px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="xs">Subtle</Text>
-          <Text fontSize="xs" color="text.muted">
-            Minimal styling for nested content
+  render: () => {
+    const recipe = useRecipe({ key: 'card' })
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Card Variants
           </Text>
-        </Card>
-        <Card variant="elevated" style={{ width: '200px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="xs">Elevated</Text>
-          <Text fontSize="xs" color="text.muted">
-            Default card with depth shadow
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Different card styles for various contexts
           </Text>
-        </Card>
-        <Card variant="outline" style={{ width: '200px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="xs">Outline</Text>
-          <Text fontSize="xs" color="text.muted">
-            Transparent with border
-          </Text>
-        </Card>
-        <Card variant="glow" style={{ width: '200px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="xs">Glow</Text>
-          <Text fontSize="xs" color="text.muted">
-            Highlighted with primary glow
-          </Text>
-        </Card>
+        </Box>
+        <Flex direction="column" gap="4">
+          <Box css={recipe({ variant: 'subtle' })}>
+            <Text fontSize="md" color="text.primary" fontWeight="medium" mb="2">
+              Subtle Card
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              A minimal card style with no shadow, using subtle border and flat background.
+            </Text>
+          </Box>
+          <Box css={recipe({ variant: 'elevated' })}>
+            <Text fontSize="md" color="text.primary" fontWeight="medium" mb="2">
+              Elevated Card
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              The default card style with gradient background and medium shadow for depth.
+            </Text>
+          </Box>
+          <Box css={recipe({ variant: 'outline' })}>
+            <Text fontSize="md" color="text.primary" fontWeight="medium" mb="2">
+              Outline Card
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              A transparent card with strong border emphasis, no background or shadow.
+            </Text>
+          </Box>
+          <Box css={recipe({ variant: 'glow' })}>
+            <Text fontSize="md" color="text.primary" fontWeight="medium" mb="2">
+              Glow Card
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              An elevated card with primary-colored border and glow effect for emphasis.
+            </Text>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
-  ),
+    )
+  },
 }
 
 export const Sizes: Story = {
-  render: () => (
-    <Flex direction="column" gap="6">
-      <Box>
-        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-          Card Sizes
-        </Text>
-        <Text fontSize="sm" color="text.muted" mb="4">
-          Small, medium, and large padding options
-        </Text>
-      </Box>
-      <Flex gap="4" flexWrap="wrap" align="flex-start">
-        <Card size="sm" style={{ width: '180px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium">Small</Text>
-          <Text fontSize="xs" color="text.muted">Compact padding</Text>
-        </Card>
-        <Card size="md" style={{ width: '200px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium">Medium</Text>
-          <Text fontSize="xs" color="text.muted">Standard padding</Text>
-        </Card>
-        <Card size="lg" style={{ width: '220px' }}>
-          <Text fontSize="sm" color="text.primary" fontWeight="medium">Large</Text>
-          <Text fontSize="xs" color="text.muted">Spacious padding</Text>
-        </Card>
+  render: () => {
+    const recipe = useRecipe({ key: 'card' })
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Card Sizes
+          </Text>
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Different padding and border radius sizes
+          </Text>
+        </Box>
+        <Flex direction="column" gap="4">
+          <Box css={recipe({ size: 'sm' })}>
+            <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="1">
+              Small Card
+            </Text>
+            <Text fontSize="xs" color="text.muted">
+              Compact padding for tight layouts.
+            </Text>
+          </Box>
+          <Box css={recipe({ size: 'md' })}>
+            <Text fontSize="md" color="text.primary" fontWeight="medium" mb="2">
+              Medium Card
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              Standard padding for most use cases.
+            </Text>
+          </Box>
+          <Box css={recipe({ size: 'lg' })}>
+            <Text fontSize="lg" color="text.primary" fontWeight="medium" mb="3">
+              Large Card
+            </Text>
+            <Text fontSize="base" color="text.muted">
+              Generous padding for featured content.
+            </Text>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
-  ),
+    )
+  },
 }
 
-export const UsageExample: Story = {
-  render: () => (
-    <Flex direction="column" gap="6">
-      <Box>
-        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-          Usage Example
-        </Text>
-        <Text fontSize="sm" color="text.muted" mb="4">
-          Cards in a typical game UI context
-        </Text>
-      </Box>
-      <Flex gap="4" flexWrap="wrap">
-        <Card variant="elevated" style={{ width: '300px' }}>
-          <Text fontSize="lg" color="text.primary" fontWeight="medium" mb="sm">
-            Game Stats
+export const WithContent: Story = {
+  render: () => {
+    const cardRecipe = useRecipe({ key: 'card' })
+    const buttonRecipe = useRecipe({ key: 'button' })
+    const badgeRecipe = useRecipe({ key: 'badge' })
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Cards with Content
           </Text>
-          <Flex direction="column" gap="xs">
-            <Flex justify="space-between">
-              <Text fontSize="sm" color="text.muted">Games Played</Text>
-              <Text fontSize="sm" color="text.primary">42</Text>
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Examples of cards with typical content patterns
+          </Text>
+        </Box>
+        <Flex direction="column" gap="4" maxWidth="600px">
+          <Box css={cardRecipe({ variant: 'elevated' })}>
+            <Text fontSize="lg" color="text.primary" fontWeight="bold" mb="2">
+              Game Settings
+            </Text>
+            <Text fontSize="sm" color="text.muted" mb="4">
+              Configure your gameplay preferences and difficulty level.
+            </Text>
+            <Flex gap="2">
+              <Box
+                as="button"
+                css={buttonRecipe({ variant: 'primary' })}
+                px="lg"
+                py="sm"
+                fontSize="sm"
+              >
+                Apply
+              </Box>
+              <Box
+                as="button"
+                css={buttonRecipe({ variant: 'secondary' })}
+                px="lg"
+                py="sm"
+                fontSize="sm"
+              >
+                Cancel
+              </Box>
             </Flex>
-            <Flex justify="space-between">
-              <Text fontSize="sm" color="text.muted">Win Rate</Text>
-              <Text fontSize="sm" color="utility.DEFAULT">78%</Text>
+          </Box>
+          <Box css={cardRecipe({ variant: 'glow' })}>
+            <Flex align="center" justify="space-between" mb="2">
+              <Text fontSize="md" color="text.primary" fontWeight="medium">
+                Achievement Unlocked
+              </Text>
+              <Box css={badgeRecipe({ variant: 'solid', colorScheme: 'success', size: 'sm' })}>
+                NEW
+              </Box>
             </Flex>
-            <Flex justify="space-between">
-              <Text fontSize="sm" color="text.muted">Best Time</Text>
-              <Text fontSize="sm" color="emphasis.DEFAULT">3:24</Text>
-            </Flex>
-          </Flex>
-        </Card>
+            <Text fontSize="sm" color="text.muted">
+              You've completed 10 puzzles in a row!
+            </Text>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
-  ),
+    )
+  },
 }

@@ -10,7 +10,7 @@ export const buttonRecipe = defineRecipe({
     borderWidth: 'base',
     borderStyle: 'solid',
     borderColor: 'border.strong',
-    background: 'linear-gradient(145deg, var(--chakra-colors-surface-1), var(--chakra-colors-surface-0))',
+    background: 'linear-gradient(145deg, var(--color-surface-1), var(--color-surface-0))',
     color: 'text.primary',
     cursor: 'pointer',
     pointerEvents: 'auto',
@@ -20,7 +20,7 @@ export const buttonRecipe = defineRecipe({
     letterSpacing: 'tight',
     fontWeight: 'medium',
     borderRadius: 'md',
-    boxShadow: 'var(--chakra-shadows-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+    boxShadow: 'var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
 
     _disabled: {
       opacity: 0.5,
@@ -28,8 +28,8 @@ export const buttonRecipe = defineRecipe({
     },
 
     _focusVisible: {
-      outline: 'var(--chakra-border-widths-base) solid var(--chakra-colors-primary)',
-      outlineOffset: 'var(--chakra-border-widths-base)',
+      outline: 'var(--border-width-base) solid var(--color-interactive-primary)',
+      outlineOffset: 'var(--border-width-base)',
     },
   },
   variants: {
@@ -39,15 +39,15 @@ export const buttonRecipe = defineRecipe({
         color: 'primary',
 
         _hover: {
-          background: 'linear-gradient(145deg, var(--chakra-colors-primary-hover), var(--chakra-colors-primary))',
+          background: 'linear-gradient(145deg, var(--color-interactive-primary-hover), var(--color-interactive-primary))',
           color: 'surface.0',
-          boxShadow: 'var(--chakra-shadows-md), var(--chakra-shadows-glow-primary-lg)',
+          boxShadow: 'var(--shadow-md), var(--shadow-glow-primary-lg)',
           transform: 'translateY(-2px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--chakra-shadows-xs), var(--chakra-shadows-glow-primary)',
+          boxShadow: 'var(--shadow-xs), var(--shadow-glow-primary)',
         },
       },
       secondary: {
@@ -55,15 +55,15 @@ export const buttonRecipe = defineRecipe({
         color: 'utility',
 
         _hover: {
-          background: 'linear-gradient(145deg, var(--chakra-colors-utility), var(--chakra-colors-utility-hover))',
+          background: 'linear-gradient(145deg, var(--color-interactive-secondary), var(--color-interactive-secondary-hover))',
           color: 'surface.0',
-          boxShadow: 'var(--chakra-shadows-md), var(--chakra-shadows-glow-utility-lg)',
+          boxShadow: 'var(--shadow-md), var(--shadow-glow-secondary-lg)',
           transform: 'translateY(-2px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--chakra-shadows-xs), var(--chakra-shadows-glow-utility)',
+          boxShadow: 'var(--shadow-xs), var(--shadow-glow-secondary)',
         },
       },
       danger: {
@@ -71,15 +71,15 @@ export const buttonRecipe = defineRecipe({
         color: 'status.error',
 
         _hover: {
-          background: 'linear-gradient(145deg, var(--chakra-colors-status-error), var(--chakra-colors-status-error))',
+          background: 'linear-gradient(145deg, var(--color-status-error), var(--color-status-error))',
           color: 'surface.0',
-          boxShadow: 'var(--chakra-shadows-md), var(--chakra-shadows-glow-error)',
+          boxShadow: 'var(--shadow-md), var(--shadow-glow-error)',
           transform: 'translateY(-2px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--chakra-shadows-xs), var(--chakra-shadows-glow-error)',
+          boxShadow: 'var(--shadow-xs), var(--shadow-glow-error)',
         },
       },
     },

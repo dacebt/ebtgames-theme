@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Box, Flex, Text } from '@chakra-ui/react'
-import { styled } from '@chakra-ui/react'
 import { useState } from 'react'
 
 const meta: Meta = {
@@ -9,68 +8,6 @@ const meta: Meta = {
 
 export default meta
 type Story = StoryObj
-
-const SwitchRoot = styled('label', {
-  base: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: 'sm',
-    cursor: 'pointer',
-  },
-})
-
-const SwitchTrack = styled('span', {
-  base: {
-    position: 'relative',
-    width: '44px',
-    height: '24px',
-    backgroundColor: 'surface.2',
-    borderRadius: 'lg',
-    borderWidth: 'thin',
-    borderStyle: 'solid',
-    borderColor: 'border.subtle',
-    transition: 'all 200ms ease',
-  },
-  variants: {
-    isChecked: {
-      true: {
-        backgroundColor: 'primary.DEFAULT',
-        borderColor: 'primary.DEFAULT',
-        boxShadow: 'var(--shadow-glow-primary)',
-      },
-    },
-  },
-})
-
-const SwitchThumb = styled('span', {
-  base: {
-    position: 'absolute',
-    top: '2px',
-    left: '2px',
-    width: '18px',
-    height: '18px',
-    backgroundColor: 'text.primary',
-    borderRadius: '50%',
-    boxShadow: 'var(--shadow-xs)',
-    transition: 'transform 200ms ease',
-  },
-  variants: {
-    isChecked: {
-      true: {
-        transform: 'translateX(20px)',
-      },
-    },
-  },
-})
-
-const SwitchLabel = styled('span', {
-  base: {
-    fontSize: 'sm',
-    color: 'text.primary',
-    fontWeight: 'medium',
-    userSelect: 'none',
-  },
-})
 
 function SwitchDemo({
   label,
@@ -82,12 +19,45 @@ function SwitchDemo({
   const [isChecked, setIsChecked] = useState(defaultChecked)
 
   return (
-    <SwitchRoot onClick={() => setIsChecked(!isChecked)}>
-      <SwitchTrack isChecked={isChecked}>
-        <SwitchThumb isChecked={isChecked} />
-      </SwitchTrack>
-      <SwitchLabel>{label}</SwitchLabel>
-    </SwitchRoot>
+    <Box
+      as="label"
+      display="inline-flex"
+      alignItems="center"
+      gap="sm"
+      cursor="pointer"
+      onClick={() => setIsChecked(!isChecked)}
+    >
+      <Box
+        position="relative"
+        width="44px"
+        height="24px"
+        backgroundColor={isChecked ? 'primary.DEFAULT' : 'surface.2'}
+        borderRadius="lg"
+        borderWidth="thin"
+        borderStyle="solid"
+        borderColor={isChecked ? 'primary.DEFAULT' : 'border.subtle'}
+        transition="all 200ms ease"
+        boxShadow={isChecked ? 'var(--shadow-glow-primary)' : 'none'}
+      >
+        <Box
+          position="absolute"
+          top="2px"
+          left="2px"
+          width="18px"
+          height="18px"
+          backgroundColor="text.primary"
+          borderRadius="50%"
+          boxShadow="var(--shadow-xs)"
+          transition="transform 200ms ease"
+          transform={isChecked ? 'translateX(20px)' : 'translateX(0)'}
+        />
+      </Box>
+      {label && (
+        <Text fontSize="sm" color="text.primary" fontWeight="medium" userSelect="none">
+          {label}
+        </Text>
+      )}
+    </Box>
   )
 }
 

@@ -1,191 +1,212 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Box, Flex, Text } from '@chakra-ui/react'
-import { styled } from '@chakra-ui/react'
+import { Box, Flex, Text, useSlotRecipe, useRecipe } from '@chakra-ui/react'
 import { useState } from 'react'
 
 const meta: Meta = {
-  title: 'SlotRecipes/Accordion',
+  title: 'Slot Recipes/Accordion',
 }
 
 export default meta
 type Story = StoryObj
 
-// Styled accordion components
-const AccordionRoot = styled('div', {
-  base: {
-    width: '100%',
-  },
-})
+const ChevronIcon = ({ expanded }: { expanded: boolean }) => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    style={{
+      transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+      transition: 'transform 0.2s ease',
+    }}
+  >
+    <path
+      d="M4 6L8 10L12 6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
 
-const AccordionItem = styled('div', {
-  base: {
-    borderWidth: 'thin',
-    borderStyle: 'solid',
-    borderColor: 'border.subtle',
-    borderRadius: 'md',
-    overflow: 'hidden',
-    marginBottom: 'sm',
-    '&:last-child': {
-      marginBottom: 0,
-    },
-  },
-  variants: {
-    variant: {
-      subtle: {
-        borderColor: 'border.subtle',
-      },
-      outline: {
-        borderColor: 'border.strong',
-      },
-      solid: {
-        borderColor: 'primary.DEFAULT',
-        boxShadow: 'var(--shadow-glow-primary)',
-      },
-    },
-  },
-  defaultVariants: {
-    variant: 'subtle',
-  },
-})
-
-const AccordionTrigger = styled('button', {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    padding: 'sm',
-    backgroundColor: 'surface.0',
-    border: 'none',
-    cursor: 'pointer',
-    fontFamily: 'body',
-    fontSize: 'sm',
-    fontWeight: 'medium',
-    color: 'primary.DEFAULT',
-    textTransform: 'uppercase',
-    letterSpacing: 'wide',
-    transition: 'all 200ms ease',
-    boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.06)',
-    _hover: {
-      backgroundColor: 'surface.1',
-    },
-  },
-  variants: {
-    isOpen: {
-      true: {
-        borderBottom: '1px solid',
-        borderBottomColor: 'border.subtle',
-        backgroundColor: 'surface.1',
-      },
-    },
-  },
-})
-
-const AccordionIcon = styled('span', {
-  base: {
-    transition: 'transform 200ms ease',
-    color: 'text.muted',
-  },
-  variants: {
-    isOpen: {
-      true: {
-        transform: 'rotate(180deg)',
-      },
-    },
-  },
-})
-
-const AccordionContent = styled('div', {
-  base: {
-    padding: 'md',
-    backgroundColor: 'surface.1',
-  },
-})
-
-function AccordionDemo({ variant = 'subtle' }: { variant?: 'subtle' | 'outline' | 'solid' }) {
-  const [openItems, setOpenItems] = useState<Set<string>>(new Set(['item-1']))
-
-  const toggleItem = (id: string) => {
-    setOpenItems((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) {
-        next.delete(id)
-      } else {
-        next.add(id)
-      }
-      return next
-    })
-  }
-
-  const items = [
-    { id: 'item-1', title: 'How to Play', content: 'Fill in the grid so that every row, column, and 3x3 box contains the digits 1-9.' },
-    { id: 'item-2', title: 'Difficulty Levels', content: 'Easy puzzles have more starting clues. Expert puzzles require advanced solving techniques.' },
-    { id: 'item-3', title: 'Game Controls', content: 'Click a cell to select it, then press a number key or use the on-screen keypad.' },
-  ]
+const AccordionItem = ({
+  title,
+  children,
+  defaultOpen = false,
+  variant,
+  size,
+}: {
+  title: string
+  children: React.ReactNode
+  defaultOpen?: boolean
+  variant?: string
+  size?: string
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const recipe = useSlotRecipe({ key: 'accordion' })
+  const styles = recipe()
 
   return (
-    <AccordionRoot>
-      {items.map((item) => {
-        const isOpen = openItems.has(item.id)
-        return (
-          <AccordionItem key={item.id} variant={variant}>
-            <AccordionTrigger isOpen={isOpen} onClick={() => toggleItem(item.id)}>
-              {item.title}
-              <AccordionIcon isOpen={isOpen}>▼</AccordionIcon>
-            </AccordionTrigger>
-            {isOpen && (
-              <AccordionContent>
-                <Text fontSize="sm" color="text.secondary">
-                  {item.content}
-                </Text>
-              </AccordionContent>
-            )}
-          </AccordionItem>
-        )
-      })}
-    </AccordionRoot>
+    <Box css={styles.item}>
+      <Box
+        as="button"
+        css={styles.trigger}
+        onClick={() => setIsOpen(!isOpen)}
+        data-expanded={isOpen || undefined}
+      >
+        <Text>{title}</Text>
+        <Box css={styles.icon} data-expanded={isOpen || undefined}>
+          <ChevronIcon expanded={isOpen} />
+        </Box>
+      </Box>
+      {isOpen && (
+        <Box css={styles.content}>
+          {children}
+        </Box>
+      )}
+    </Box>
   )
 }
 
 export const Default: Story = {
-  render: () => (
-    <Flex direction="column" gap="6" maxW="400px">
-      <Box>
-        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-          Accordion
-        </Text>
-        <Text fontSize="sm" color="text.muted" mb="4">
-          Collapsible content sections
-        </Text>
-      </Box>
-      <AccordionDemo />
-    </Flex>
-  ),
+  render: () => {
+    const recipe = useSlotRecipe({ key: 'accordion' })
+    const styles = recipe()
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Accordion
+          </Text>
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Collapsible sections for organizing content
+          </Text>
+        </Box>
+        <Box css={styles.root} maxWidth="600px">
+          <AccordionItem title="Section One">
+            <Text fontSize="sm" color="text.primary">
+              This is the content for section one. It can contain any kind of content
+              including text, images, or other components.
+            </Text>
+          </AccordionItem>
+          <AccordionItem title="Section Two">
+            <Text fontSize="sm" color="text.primary">
+              This is the content for section two. Sections can be expanded and collapsed
+              independently.
+            </Text>
+          </AccordionItem>
+          <AccordionItem title="Section Three">
+            <Text fontSize="sm" color="text.primary">
+              This is the content for section three. The accordion pattern is great for
+              organizing related content.
+            </Text>
+          </AccordionItem>
+        </Box>
+      </Flex>
+    )
+  },
 }
 
-export const Variants: Story = {
-  render: () => (
-    <Flex direction="column" gap="8" maxW="400px">
-      <Box>
-        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-          Accordion Variants
-        </Text>
-        <Text fontSize="sm" color="text.muted" mb="4">
-          Subtle, outline, and solid styles
-        </Text>
-      </Box>
-      <Box>
-        <Text fontSize="sm" color="text.muted" mb="3">Subtle</Text>
-        <AccordionDemo variant="subtle" />
-      </Box>
-      <Box>
-        <Text fontSize="sm" color="text.muted" mb="3">Outline</Text>
-        <AccordionDemo variant="outline" />
-      </Box>
-      <Box>
-        <Text fontSize="sm" color="text.muted" mb="3">Solid</Text>
-        <AccordionDemo variant="solid" />
-      </Box>
-    </Flex>
-  ),
+export const DefaultOpen: Story = {
+  render: () => {
+    const recipe = useSlotRecipe({ key: 'accordion' })
+    const styles = recipe()
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Default Open State
+          </Text>
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Some sections can start in an open state
+          </Text>
+        </Box>
+        <Box css={styles.root} maxWidth="600px">
+          <AccordionItem title="Getting Started" defaultOpen>
+            <Text fontSize="sm" color="text.primary" mb="2">
+              Welcome! This section is open by default to guide you through the basics.
+            </Text>
+            <Text fontSize="sm" color="text.muted">
+              Follow these steps to get started with the game.
+            </Text>
+          </AccordionItem>
+          <AccordionItem title="Advanced Features">
+            <Text fontSize="sm" color="text.primary">
+              Learn about advanced features and strategies once you've mastered the basics.
+            </Text>
+          </AccordionItem>
+        </Box>
+      </Flex>
+    )
+  },
+}
+
+export const WithRichContent: Story = {
+  render: () => {
+    const accordionRecipe = useSlotRecipe({ key: 'accordion' })
+    const badgeRecipe = useRecipe({ key: 'badge' })
+    const accordionStyles = accordionRecipe()
+
+    return (
+      <Flex direction="column" gap="6">
+        <Box>
+          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+            Rich Content
+          </Text>
+          <Text fontSize="sm" color="text.muted" mb="4">
+            Accordion sections can contain complex content
+          </Text>
+        </Box>
+        <Box css={accordionStyles.root} maxWidth="600px">
+          <AccordionItem title="Game Settings" defaultOpen>
+            <Flex direction="column" gap="3">
+              <Box>
+                <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="1">
+                  Difficulty
+                </Text>
+                <Flex gap="2">
+                  <Box css={badgeRecipe({ variant: 'subtle', colorScheme: 'success', size: 'sm' })}>
+                    Easy
+                  </Box>
+                  <Box css={badgeRecipe({ variant: 'subtle', colorScheme: 'primary', size: 'sm' })}>
+                    Medium
+                  </Box>
+                  <Box css={badgeRecipe({ variant: 'subtle', colorScheme: 'error', size: 'sm' })}>
+                    Hard
+                  </Box>
+                </Flex>
+              </Box>
+              <Box>
+                <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="1">
+                  Sound
+                </Text>
+                <Text fontSize="xs" color="text.muted">
+                  Enable or disable sound effects and music
+                </Text>
+              </Box>
+            </Flex>
+          </AccordionItem>
+          <AccordionItem title="Statistics">
+            <Flex direction="column" gap="2">
+              <Flex justify="space-between">
+                <Text fontSize="sm" color="text.muted">Games Played</Text>
+                <Text fontSize="sm" color="text.primary" fontWeight="medium">42</Text>
+              </Flex>
+              <Flex justify="space-between">
+                <Text fontSize="sm" color="text.muted">Win Rate</Text>
+                <Text fontSize="sm" color="text.primary" fontWeight="medium">87%</Text>
+              </Flex>
+              <Flex justify="space-between">
+                <Text fontSize="sm" color="text.muted">Best Time</Text>
+                <Text fontSize="sm" color="text.primary" fontWeight="medium">3:42</Text>
+              </Flex>
+            </Flex>
+          </AccordionItem>
+        </Box>
+      </Flex>
+    )
+  },
 }

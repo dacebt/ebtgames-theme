@@ -15,7 +15,7 @@ export const timerRecipe = defineRecipe({
     borderColor: 'border.strong',
     background: 'surface.1',
     borderRadius: 'md',
-    boxShadow: 'var(--chakra-shadows-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+    boxShadow: 'var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
     justifyContent: 'center',
   },
 })

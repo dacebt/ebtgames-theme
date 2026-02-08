@@ -4,7 +4,7 @@ export const cellRecipe = defineRecipe({
   className: 'ninefold-cell',
   base: {
     aspectRatio: '1',
-    background: 'linear-gradient(145deg, {colors.surface.1}, {colors.surface.0})',
+    background: 'linear-gradient(145deg, var(--color-surface-1), var(--color-surface-0))',
     borderWidth: 'thin',
     borderColor: 'border.subtle',
     borderStyle: 'solid',
@@ -12,15 +12,15 @@ export const cellRecipe = defineRecipe({
     fontFamily: 'body',
     fontSize: 'cell',
     cursor: 'pointer',
-    transition: 'all var(--transition-fast) var(--ease-default)',
+    transition: 'all var(--timing-fast) var(--easing-default)',
     p: 0,
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '{shadows.inset.subtle}, 0 1px 2px rgba(0, 0, 0, 0.2)',
+    boxShadow: 'var(--shadow-inset-subtle), 0 1px 2px rgba(0, 0, 0, 0.2)',
     _focusVisible: {
-      outline: '{borderWidths.base} solid {colors.primary.DEFAULT}',
+      outline: 'var(--border-width-base) solid var(--color-interactive-primary)',
       outlineOffset: '-2px',
       zIndex: 'base',
     },
@@ -29,23 +29,23 @@ export const cellRecipe = defineRecipe({
     state: {
       normal: {
         _hover: {
-          background: 'linear-gradient(145deg, {colors.surface.2}, {colors.surface.1})',
+          background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
           borderColor: 'primary.hover',
           boxShadow:
-            '{shadows.inset.subtle}, 0 2px 4px rgba(0, 0, 0, 0.3), {shadows.glow.primary}',
+            'var(--shadow-inset-subtle), 0 2px 4px rgba(0, 0, 0, 0.3), var(--shadow-glow-primary)',
           transform: 'translateY(-1px)',
         },
       },
       given: {
         fontWeight: 'bold',
-        background: 'linear-gradient(145deg, {colors.surface.2}, {colors.surface.1})',
+        background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
         borderColor: 'border.strong',
         cursor: 'default',
-        boxShadow: '{shadows.inset.subtle}, 0 2px 4px rgba(0, 0, 0, 0.3)',
+        boxShadow: 'var(--shadow-inset-subtle), 0 2px 4px rgba(0, 0, 0, 0.3)',
         _hover: {
-          background: 'linear-gradient(145deg, {colors.surface.2}, {colors.surface.1})',
+          background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
           borderColor: 'border.strong',
-          boxShadow: '{shadows.inset.subtle}, 0 2px 4px rgba(0, 0, 0, 0.3)',
+          boxShadow: 'var(--shadow-inset-subtle), 0 2px 4px rgba(0, 0, 0, 0.3)',
           transform: 'none',
         },
       },
