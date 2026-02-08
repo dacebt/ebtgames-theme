@@ -1,9 +1,30 @@
 import { defineGlobalStyles } from '@chakra-ui/react'
+import { allCssVariables } from './cssVariables'
 
+/**
+ * Global CSS styles including:
+ * - CSS variable injection into :root
+ * - Background effects (gradients, noise texture)
+ * - Scrollbar styling
+ * - Selection styling
+ * - Focus visible states
+ */
 export const globalCss = defineGlobalStyles({
+  // Inject CSS variables into :root
+  ':root': allCssVariables,
+
   // Universal reset
   '*, *::before, *::after': {
     boxSizing: 'border-box',
+  },
+
+  // Body base styles
+  body: {
+    backgroundColor: 'var(--color-surface-0)',
+    color: 'var(--color-text-primary)',
+    fontFamily: 'var(--font-body)',
+    fontSize: 'var(--font-size-base)',
+    lineHeight: '1.5',
   },
 
   // Body pseudo-elements for background effects
@@ -36,33 +57,33 @@ export const globalCss = defineGlobalStyles({
   },
 
   '::-webkit-scrollbar-track': {
-    background: '{colors.surface.1}',
+    background: 'var(--color-surface-1)',
   },
 
   '::-webkit-scrollbar-thumb': {
-    background: '{colors.utility.DEFAULT}',
-    borderRadius: '{radii.sm}',
+    background: 'var(--color-interactive-secondary)',
+    borderRadius: 'var(--radius-sm)',
   },
 
   '::-webkit-scrollbar-thumb:hover': {
-    background: '{colors.utility.hover}',
+    background: 'var(--color-interactive-secondary-hover)',
   },
 
   // Firefox scrollbar
   '*': {
     scrollbarWidth: 'thin',
-    scrollbarColor: '{colors.utility.DEFAULT} {colors.surface.1}',
+    scrollbarColor: 'var(--color-interactive-secondary) var(--color-surface-1)',
   },
 
   // Selection styling
   '::selection': {
-    background: '{colors.primary.DEFAULT}',
-    color: '{colors.text.primary}',
+    background: 'var(--color-interactive-primary)',
+    color: 'var(--color-text-primary)',
   },
 
   // Focus visible outline
   ':focus-visible': {
-    outline: '2px solid {colors.primary.DEFAULT}',
+    outline: '2px solid var(--color-interactive-primary)',
     outlineOffset: '2px',
   },
 })

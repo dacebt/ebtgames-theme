@@ -1,5 +1,10 @@
 import { defineKeyframes } from '@chakra-ui/react'
 
+/**
+ * Animation keyframes using CSS variables for theming.
+ * CSS variable references (e.g., var(--shadow-glow-primary)) ensure
+ * animations stay in sync with the design system.
+ */
 export const keyframes = defineKeyframes({
   fadeIn: {
     from: { opacity: '0' },
@@ -24,19 +29,38 @@ export const keyframes = defineKeyframes({
 
   glow: {
     '0%, 100%': {
-      boxShadow: '0 0 10px rgba(124, 91, 214, 0.4)',
+      boxShadow: 'var(--shadow-glow-primary)',
     },
     '50%': {
-      boxShadow: '0 0 20px rgba(124, 91, 214, 0.5), 0 0 40px rgba(124, 91, 214, 0.3)',
+      boxShadow: 'var(--shadow-glow-primary-lg)',
     },
   },
 
-  glowHighlight: {
+  glowSecondary: {
     '0%, 100%': {
-      boxShadow: '0 0 10px rgba(216, 107, 154, 0.3)',
+      boxShadow: 'var(--shadow-glow-secondary)',
     },
     '50%': {
-      boxShadow: '0 0 20px rgba(216, 107, 154, 0.4), 0 0 40px rgba(216, 107, 154, 0.2)',
+      boxShadow: 'var(--shadow-glow-secondary-lg)',
+    },
+  },
+
+  glowAccent: {
+    '0%, 100%': {
+      boxShadow: 'var(--shadow-glow-accent)',
+    },
+    '50%': {
+      boxShadow: 'var(--shadow-glow-accent-lg)',
+    },
+  },
+
+  // Legacy alias for backward compatibility
+  glowHighlight: {
+    '0%, 100%': {
+      boxShadow: 'var(--shadow-glow-accent)',
+    },
+    '50%': {
+      boxShadow: 'var(--shadow-glow-accent-lg)',
     },
   },
 
@@ -64,6 +88,48 @@ export const keyframes = defineKeyframes({
     to: {
       transform: 'scale(1)',
       opacity: '1',
+    },
+  },
+
+  scaleOut: {
+    from: {
+      transform: 'scale(1)',
+      opacity: '1',
+    },
+    to: {
+      transform: 'scale(0.8)',
+      opacity: '0',
+    },
+  },
+
+  slideInUp: {
+    from: {
+      transform: 'translateY(10px)',
+      opacity: '0',
+    },
+    to: {
+      transform: 'translateY(0)',
+      opacity: '1',
+    },
+  },
+
+  slideInDown: {
+    from: {
+      transform: 'translateY(-10px)',
+      opacity: '0',
+    },
+    to: {
+      transform: 'translateY(0)',
+      opacity: '1',
+    },
+  },
+
+  spin: {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
     },
   },
 })

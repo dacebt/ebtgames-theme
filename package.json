@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "^3.32.0",
+    "@storybook/addon-a11y": "^8.6.15",
+    "@storybook/addon-essentials": "^8.6.15",
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "react": "^19.2.0",

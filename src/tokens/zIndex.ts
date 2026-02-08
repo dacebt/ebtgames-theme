@@ -1,10 +1,13 @@
 import { defineTokens } from '@chakra-ui/react'
 
+/**
+ * Z-index tokens that reference CSS variables from cssVariables.ts
+ */
 export const zIndex = defineTokens.zIndex({
-  base: { value: 1 },
-  dropdown: { value: 100 },
-  overlay: { value: 500 },
-  modal: { value: 1000 },
-  toast: { value: 1500 },
-  fullscreen: { value: 2000 },
+  base: { value: 'var(--z-index-base)' },
+  dropdown: { value: 'var(--z-index-dropdown)' },
+  overlay: { value: 'var(--z-index-overlay)' },
+  modal: { value: 'var(--z-index-modal)' },
+  toast: { value: 'var(--z-index-toast)' },
+  fullscreen: { value: 'var(--z-index-fullscreen)' },
 })
