@@ -10,9 +10,12 @@ export const loadingRecipe = defineRecipe({
     display: 'inline-block',
     width: '12px',
     height: '12px',
-    backgroundColor: 'primary.DEFAULT',
     borderRadius: '50%',
-    animation: 'bounce 1.4s infinite ease-in-out both',
+    animationName: 'bounce',
+    animationDuration: '1.4s',
+    animationIterationCount: 'infinite',
+    animationTimingFunction: 'ease-in-out',
+    animationFillMode: 'both',
   },
   variants: {
     size: {
@@ -31,13 +34,13 @@ export const loadingRecipe = defineRecipe({
     },
     color: {
       primary: {
-        backgroundColor: 'primary.DEFAULT',
+        bg: 'primary',
       },
       secondary: {
-        backgroundColor: 'utility.DEFAULT',
+        bg: 'utility',
       },
       accent: {
-        backgroundColor: 'emphasis.DEFAULT',
+        bg: 'emphasis',
       },
     },
   },
