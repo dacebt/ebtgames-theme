@@ -16,32 +16,32 @@ type Story = StoryObj
 
 // Extract color values for display
 const surfaceColors = [
-  { name: 'surface-0', var: '--color-surface-0', value: colorVariables['--color-surface-0'] },
-  { name: 'surface-1', var: '--color-surface-1', value: colorVariables['--color-surface-1'] },
-  { name: 'surface-2', var: '--color-surface-2', value: colorVariables['--color-surface-2'] },
-  { name: 'surface-3', var: '--color-surface-3', value: colorVariables['--color-surface-3'] },
+  { name: 'surface.0', var: '--color-surface-0', value: colorVariables['--color-surface-0'] },
+  { name: 'surface.1', var: '--color-surface-1', value: colorVariables['--color-surface-1'] },
+  { name: 'surface.2', var: '--color-surface-2', value: colorVariables['--color-surface-2'] },
+  { name: 'surface.3', var: '--color-surface-3', value: colorVariables['--color-surface-3'] },
 ]
 
 const textColors = [
-  { name: 'text-primary', var: '--color-text-primary', value: colorVariables['--color-text-primary'] },
-  { name: 'text-secondary', var: '--color-text-secondary', value: colorVariables['--color-text-secondary'] },
-  { name: 'text-muted', var: '--color-text-muted', value: colorVariables['--color-text-muted'] },
-  { name: 'text-disabled', var: '--color-text-disabled', value: colorVariables['--color-text-disabled'] },
+  { name: 'text.primary', var: '--color-text-primary', value: colorVariables['--color-text-primary'] },
+  { name: 'text.secondary', var: '--color-text-secondary', value: colorVariables['--color-text-secondary'] },
+  { name: 'text.muted', var: '--color-text-muted', value: colorVariables['--color-text-muted'] },
+  { name: 'text.disabled', var: '--color-text-disabled', value: colorVariables['--color-text-disabled'] },
 ]
 
 const interactiveColors = [
   { name: 'primary', var: '--color-interactive-primary', value: colorVariables['--color-interactive-primary'] },
-  { name: 'primary-hover', var: '--color-interactive-primary-hover', value: colorVariables['--color-interactive-primary-hover'] },
-  { name: 'secondary', var: '--color-interactive-secondary', value: colorVariables['--color-interactive-secondary'] },
-  { name: 'secondary-hover', var: '--color-interactive-secondary-hover', value: colorVariables['--color-interactive-secondary-hover'] },
-  { name: 'accent', var: '--color-interactive-accent', value: colorVariables['--color-interactive-accent'] },
+  { name: 'primary.hover', var: '--color-interactive-primary-hover', value: colorVariables['--color-interactive-primary-hover'] },
+  { name: 'utility', var: '--color-interactive-secondary', value: colorVariables['--color-interactive-secondary'] },
+  { name: 'utility.hover', var: '--color-interactive-secondary-hover', value: colorVariables['--color-interactive-secondary-hover'] },
+  { name: 'emphasis', var: '--color-interactive-accent', value: colorVariables['--color-interactive-accent'] },
 ]
 
 const statusColors = [
-  { name: 'success', var: '--color-status-success', value: colorVariables['--color-status-success'] },
-  { name: 'warning', var: '--color-status-warning', value: colorVariables['--color-status-warning'] },
-  { name: 'error', var: '--color-status-error', value: colorVariables['--color-status-error'] },
-  { name: 'info', var: '--color-status-info', value: colorVariables['--color-status-info'] },
+  { name: 'status.success', var: '--color-status-success', value: colorVariables['--color-status-success'] },
+  { name: 'status.warning', var: '--color-status-warning', value: colorVariables['--color-status-warning'] },
+  { name: 'status.error', var: '--color-status-error', value: colorVariables['--color-status-error'] },
+  { name: 'status.info', var: '--color-status-info', value: colorVariables['--color-status-info'] },
 ]
 
 function ColorSwatch({ name, cssVar, value }: { name: string; cssVar: string; value: string }) {
@@ -127,7 +127,7 @@ export const InteractiveColors: Story = {
           Interactive Colors
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Primary (purple), Secondary (teal), Accent (rose)
+          Primary (purple), Utility (teal), Emphasis (rose)
         </Text>
       </Box>
       <Flex gap="4" flexWrap="wrap">
@@ -172,17 +172,17 @@ export const StatusColors: Story = {
 export const ContrastGrid: Story = {
   render: () => {
     const backgrounds = [
-      { name: 'surface-0', value: colorVariables['--color-surface-0'] },
-      { name: 'surface-1', value: colorVariables['--color-surface-1'] },
-      { name: 'surface-2', value: colorVariables['--color-surface-2'] },
+      { name: 'surface.0', value: colorVariables['--color-surface-0'] },
+      { name: 'surface.1', value: colorVariables['--color-surface-1'] },
+      { name: 'surface.2', value: colorVariables['--color-surface-2'] },
     ]
 
     const foregrounds = [
-      { name: 'text-primary', value: colorVariables['--color-text-primary'] },
-      { name: 'text-secondary', value: colorVariables['--color-text-secondary'] },
-      { name: 'text-muted', value: colorVariables['--color-text-muted'] },
+      { name: 'text.primary', value: colorVariables['--color-text-primary'] },
+      { name: 'text.secondary', value: colorVariables['--color-text-secondary'] },
+      { name: 'text.muted', value: colorVariables['--color-text-muted'] },
       { name: 'primary', value: colorVariables['--color-interactive-primary'] },
-      { name: 'secondary', value: colorVariables['--color-interactive-secondary'] },
+      { name: 'utility', value: colorVariables['--color-interactive-secondary'] },
     ]
 
     return (
