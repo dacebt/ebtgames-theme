@@ -19,7 +19,7 @@ export const Variants: Story = {
             Button Variants
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Primary, secondary, and danger button styles
+            Neutral controls with accent-based action emphasis.
           </Text>
         </Box>
         <Flex gap="4" flexWrap="wrap">
@@ -67,54 +67,78 @@ export const States: Story = {
             Button States
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Normal, hover, active, and disabled states
+            Hover lift, pressed inset, focus ring, and clear layer feedback.
           </Text>
         </Box>
         <Flex direction="column" gap="4">
           <Box>
-            <Text fontSize="sm" color="text.muted" mb="2">Normal state</Text>
-            <Flex gap="4">
-              <Box
-                as="button"
-                css={recipe({ variant: 'primary' })}
-                px="lg"
-                py="sm"
-              >
+            <Text fontSize="sm" color="text.muted" mb="2">
+              Default
+            </Text>
+            <Flex gap="4" flexWrap="wrap">
+              <Box as="button" css={recipe({ variant: 'primary' })} px="lg" py="sm">
                 Primary
               </Box>
-              <Box
-                as="button"
-                css={recipe({ variant: 'secondary' })}
-                px="lg"
-                py="sm"
-              >
+              <Box as="button" css={recipe({ variant: 'secondary' })} px="lg" py="sm">
                 Secondary
               </Box>
             </Flex>
           </Box>
+
           <Box>
-            <Text fontSize="sm" color="text.muted" mb="2">Disabled state</Text>
-            <Flex gap="4">
+            <Text fontSize="sm" color="text.muted" mb="2">
+              Hover (simulated)
+            </Text>
+            <Flex gap="4" flexWrap="wrap">
+              <Box as="button" css={recipe({ variant: 'primary' })} px="lg" py="sm" data-hover="true">
+                Primary
+              </Box>
+              <Box as="button" css={recipe({ variant: 'secondary' })} px="lg" py="sm" data-hover="true">
+                Secondary
+              </Box>
+            </Flex>
+          </Box>
+
+          <Box>
+            <Text fontSize="sm" color="text.muted" mb="2">
+              Active (simulated)
+            </Text>
+            <Flex gap="4" flexWrap="wrap">
+              <Box as="button" css={recipe({ variant: 'primary' })} px="lg" py="sm" data-active="true">
+                Primary
+              </Box>
+              <Box as="button" css={recipe({ variant: 'danger' })} px="lg" py="sm" data-active="true">
+                Danger
+              </Box>
+            </Flex>
+          </Box>
+
+          <Box>
+            <Text fontSize="sm" color="text.muted" mb="2">
+              Focus visible (simulated)
+            </Text>
+            <Flex gap="4" flexWrap="wrap">
               <Box
                 as="button"
                 css={recipe({ variant: 'primary' })}
                 px="lg"
                 py="sm"
-                disabled
-                opacity={0.5}
-                cursor="not-allowed"
+                data-focus-visible="true"
               >
                 Primary
               </Box>
-              <Box
-                as="button"
-                css={recipe({ variant: 'secondary' })}
-                px="lg"
-                py="sm"
-                disabled
-                opacity={0.5}
-                cursor="not-allowed"
-              >
+            </Flex>
+          </Box>
+
+          <Box>
+            <Text fontSize="sm" color="text.muted" mb="2">
+              Disabled
+            </Text>
+            <Flex gap="4" flexWrap="wrap">
+              <Box as="button" css={recipe({ variant: 'primary' })} px="lg" py="sm" disabled>
+                Primary
+              </Box>
+              <Box as="button" css={recipe({ variant: 'secondary' })} px="lg" py="sm" disabled>
                 Secondary
               </Box>
             </Flex>
@@ -136,10 +160,10 @@ export const Sizes: Story = {
             Button Sizes
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Different padding and font sizes
+            Size examples with a consistent neutral elevation profile.
           </Text>
         </Box>
-        <Flex gap="4" align="center">
+        <Flex gap="4" align="center" flexWrap="wrap">
           <Box
             as="button"
             css={recipe({ variant: 'primary' })}

@@ -15,7 +15,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       fontFamily: 'body',
       fontSize: 'base',
       fontWeight: 'medium',
-      color: 'primary.DEFAULT',
+      color: 'text.secondary',
       textTransform: 'uppercase',
       letterSpacing: 'tight',
       marginBottom: 'md',
@@ -32,28 +32,31 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       padding: 'sm',
       borderWidth: 'thin',
       borderStyle: 'solid',
-      borderColor: 'border.subtle',
+      borderColor: 'border.soft',
       borderRadius: 'md',
-      backgroundColor: 'transparent',
+      background:
+        'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
       cursor: 'pointer',
       transition: 'all var(--timing-base) var(--easing-default)',
 
       _hover: {
-        borderColor: 'primary.DEFAULT',
-        backgroundColor: 'overlay.subtle',
+        borderColor: 'border.contrast',
+        backgroundColor: 'overlay.light',
       },
 
       _checked: {
         borderColor: 'primary.DEFAULT',
-        backgroundColor: 'overlay.light',
+        backgroundColor: 'overlay.primarySoft',
+        boxShadow: 'var(--shadow-focus-ring-primary)',
       },
 
       _disabled: {
         opacity: 0.5,
         cursor: 'not-allowed',
         _hover: {
-          borderColor: 'border.subtle',
-          backgroundColor: 'transparent',
+          borderColor: 'border.soft',
+          background:
+            'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
         },
       },
     },
@@ -65,7 +68,7 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       height: '18px',
       borderWidth: 'base',
       borderStyle: 'solid',
-      borderColor: 'border.strong',
+      borderColor: 'border.contrast',
       borderRadius: '50%',
       backgroundColor: 'surface.0',
       flexShrink: 0,
@@ -106,12 +109,12 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
       },
       subtle: {
         item: {
-          backgroundColor: 'surface.1',
+          backgroundColor: 'surface.2',
           _hover: {
-            backgroundColor: 'surface.2',
+            backgroundColor: 'surface.3',
           },
           _checked: {
-            backgroundColor: 'overlay.light',
+            backgroundColor: 'overlay.primarySoft',
           },
         },
       },
@@ -119,9 +122,9 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
         item: {
           padding: 'md',
           borderRadius: 'md',
-          boxShadow: 'var(--shadow-xs)',
+          boxShadow: 'var(--shadow-elevation-1)',
           _checked: {
-            boxShadow: 'var(--shadow-sm), var(--shadow-glow-primary)',
+            boxShadow: 'var(--shadow-elevation-2), var(--shadow-focus-ring-primary)',
           },
         },
       },

@@ -23,16 +23,17 @@ export const victoryScreenSlotRecipe = defineSlotRecipe({
       padding: 'xl',
       borderWidth: 'thick',
       borderStyle: 'solid',
-      borderColor: 'border.strong',
-      background: 'surface.2',
-      boxShadow: 'glow.primary-xl',
+      borderColor: 'border.contrast',
+      background:
+        'linear-gradient(145deg, var(--color-surface-card-top), var(--color-surface-card-bottom))',
+      boxShadow: 'var(--shadow-elevation-3), var(--shadow-focus-ring-primary)',
     },
     title: {
       fontFamily: 'display',
       fontSize: '3xl',
       color: 'text.primary',
       letterSpacing: 'wide',
-      textShadow: 'glow.emphasis-lg',
+      textShadow: '0 2px 8px rgba(0, 0, 0, 0.45)',
       animation: 'pulse 2s ease-in-out infinite',
     },
     stats: {
@@ -48,8 +49,8 @@ export const victoryScreenSlotRecipe = defineSlotRecipe({
       padding: 'md',
       borderWidth: 'base',
       borderStyle: 'solid',
-      borderColor: 'emphasis',
-      background: 'overlay.subtle',
+      borderColor: 'primary.DEFAULT',
+      background: 'overlay.primarySoft',
       animation: 'glowHighlight 2s ease-in-out infinite',
     },
     actions: {

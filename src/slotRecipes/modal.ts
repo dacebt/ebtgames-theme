@@ -16,23 +16,25 @@ export const modalSlotRecipe = defineSlotRecipe({
       padding: 'md',
     },
     modal: {
-      background: 'linear-gradient(145deg, var(--color-surface-2), var(--color-surface-1))',
+      background:
+        'linear-gradient(145deg, var(--color-surface-card-top), var(--color-surface-card-bottom))',
       borderWidth: 'base',
       borderStyle: 'solid',
-      borderColor: 'primary.DEFAULT',
+      borderColor: 'border.contrast',
       maxWidth: '500px',
       width: '100%',
       maxHeight: '90vh',
       overflowY: 'auto',
-      boxShadow: 'var(--shadow-xl), var(--shadow-glow-primary-xl), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+      boxShadow:
+        'var(--shadow-elevation-3), inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow-focus-ring-primary)',
       borderRadius: 'md',
     },
     header: {
       padding: 'lg',
       borderBottomWidth: 'thin',
       borderBottomStyle: 'solid',
-      borderBottomColor: 'border.subtle',
-      background: 'linear-gradient(180deg, var(--color-overlay-light), transparent)',
+      borderBottomColor: 'border.soft',
+      background: 'linear-gradient(180deg, var(--color-overlay-subtle), transparent)',
     },
     title: {
       margin: 0,

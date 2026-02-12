@@ -14,7 +14,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
     item: {
       borderWidth: 'thin',
       borderStyle: 'solid',
-      borderColor: 'border.subtle',
+      borderColor: 'border.soft',
       borderRadius: 'md',
       overflow: 'hidden',
       marginBottom: 'sm',
@@ -29,7 +29,8 @@ export const accordionSlotRecipe = defineSlotRecipe({
       justifyContent: 'space-between',
       width: '100%',
       padding: 'sm',
-      backgroundColor: 'surface.0',
+      background:
+        'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
       borderWidth: 0,
       borderBottomWidth: 'thin',
       borderStyle: 'solid',
@@ -45,12 +46,15 @@ export const accordionSlotRecipe = defineSlotRecipe({
       boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.06)',
 
       _hover: {
-        backgroundColor: 'surface.1',
+        borderColor: 'border.contrast',
+        background:
+          'linear-gradient(145deg, var(--color-surface-card-top), var(--color-surface-card-bottom))',
       },
 
       _expanded: {
-        borderBottomColor: 'border.subtle',
-        backgroundColor: 'surface.1',
+        borderBottomColor: 'border.soft',
+        background:
+          'linear-gradient(145deg, var(--color-surface-card-top), var(--color-surface-card-bottom))',
       },
     },
     icon: {
@@ -63,25 +67,26 @@ export const accordionSlotRecipe = defineSlotRecipe({
     },
     content: {
       padding: 'md',
-      backgroundColor: 'surface.1',
+      backgroundColor: 'surface.2',
     },
   },
   variants: {
     variant: {
       subtle: {
         item: {
-          borderColor: 'border.subtle',
+          borderColor: 'border.soft',
         },
         trigger: {
-          backgroundColor: 'surface.0',
+          background:
+            'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
         },
         content: {
-          backgroundColor: 'surface.1',
+          backgroundColor: 'surface.2',
         },
       },
       outline: {
         item: {
-          borderColor: 'border.strong',
+          borderColor: 'border.contrast',
         },
         trigger: {
           backgroundColor: 'transparent',
@@ -96,14 +101,15 @@ export const accordionSlotRecipe = defineSlotRecipe({
       solid: {
         item: {
           borderColor: 'primary.DEFAULT',
-          boxShadow: 'var(--shadow-glow-primary)',
+          boxShadow: 'var(--shadow-elevation-2), var(--shadow-glow-primary)',
         },
         trigger: {
-          backgroundColor: 'surface.1',
+          background:
+            'linear-gradient(145deg, var(--color-surface-card-top), var(--color-surface-card-bottom))',
           borderBottomColor: 'primary.DEFAULT',
         },
         content: {
-          backgroundColor: 'surface.0',
+          backgroundColor: 'surface.2',
         },
       },
     },

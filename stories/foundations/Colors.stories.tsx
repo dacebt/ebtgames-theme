@@ -77,7 +77,7 @@ export const SurfaceColors: Story = {
           Surface Colors
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Deep purple monochrome scale for backgrounds and elevation
+          Neutral surface scale for base, panel, and overlay layers
         </Text>
       </Box>
       <Flex gap="4" flexWrap="wrap">
@@ -90,6 +90,69 @@ export const SurfaceColors: Story = {
           />
         ))}
       </Flex>
+    </Flex>
+  ),
+}
+
+export const LayerSeparation: Story = {
+  render: () => (
+    <Flex direction="column" gap="6">
+      <Box>
+        <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+          Layer Separation
+        </Text>
+        <Text fontSize="sm" color="text.muted" mb="4">
+          Neutral layers separate canvas, panels, and elevated content while accents stay intentional.
+        </Text>
+      </Box>
+      <Box
+        bg="surface.0"
+        p="6"
+        borderRadius="lg"
+        borderWidth="thin"
+        borderColor="border.subtle"
+      >
+        <Flex direction="column" gap="4">
+          <Text fontSize="sm" color="text.muted">
+            Canvas
+          </Text>
+          <Box
+            bg="surface.1"
+            borderRadius="md"
+            p="4"
+            borderWidth="thin"
+            borderColor="border.subtle"
+          >
+            <Flex justify="space-between" align="center">
+              <Text fontSize="sm" color="text.primary" fontWeight="medium">
+                Panel Layer
+              </Text>
+              <Box
+                px="2"
+                py="1"
+                borderRadius="sm"
+                bg="emphasis.DEFAULT"
+                color="text.primary"
+                fontSize="xs"
+                fontWeight="medium"
+              >
+                Accent Tag
+              </Box>
+            </Flex>
+            <Box
+              mt="3"
+              bg="surface.2"
+              borderRadius="md"
+              p="3"
+              borderWidth="thin"
+              borderColor="border.strong"
+              boxShadow="sm"
+            >
+              <Text fontSize="sm" color="text.primary">Raised content container</Text>
+            </Box>
+          </Box>
+        </Flex>
+      </Box>
     </Flex>
   ),
 }
@@ -127,7 +190,7 @@ export const InteractiveColors: Story = {
           Interactive Colors
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Primary (purple), Utility (teal), Emphasis (rose)
+          Primary, utility, and emphasis accents on a neutral foundation
         </Text>
       </Box>
       <Flex gap="4" flexWrap="wrap">
@@ -268,10 +331,10 @@ export const FullPalette: Story = {
     <Flex direction="column" gap="8">
       <Box>
         <Text fontSize="2xl" color="text.primary" fontFamily="display" mb="2">
-          Night Violet Palette
+          Neutral Foundation Palette
         </Text>
         <Text fontSize="sm" color="text.muted">
-          Complete color system with WCAG AA verified contrast ratios
+          Complete foundation and accent system with WCAG-aware contrast checks
         </Text>
       </Box>
 

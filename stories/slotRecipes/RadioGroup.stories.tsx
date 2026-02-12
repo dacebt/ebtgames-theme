@@ -48,7 +48,7 @@ export const Default: Story = {
             Radio Group
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Selection groups for mutually exclusive options
+            Mutually exclusive selection with neutral grouping and clear focus
           </Text>
         </Box>
         <Box css={{ slotRecipe: 'radioGroup.root' }} maxWidth="400px">
@@ -90,7 +90,7 @@ export const WithDescriptions: Story = {
             With Descriptions
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Radio items with additional descriptive text
+            Extended labels that preserve hierarchy and separation
           </Text>
         </Box>
         <Box css={{ slotRecipe: 'radioGroup.root' }} maxWidth="500px">
@@ -135,7 +135,7 @@ export const HorizontalOrientation: Story = {
             Horizontal Layout
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Radio groups can be arranged horizontally
+            Horizontal arrangement with the same neutral depth language
           </Text>
         </Box>
         <Box css={{ slotRecipe: 'radioGroup.root' }} maxWidth="600px">
@@ -178,7 +178,7 @@ export const Sizes: Story = {
             Radio Group Sizes
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Small and large size variations
+            Small and large variants with consistent separation cues
           </Text>
         </Box>
 

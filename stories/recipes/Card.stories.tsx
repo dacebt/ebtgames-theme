@@ -19,7 +19,7 @@ export const Variants: Story = {
             Card Variants
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Different card styles for various contexts
+            Neutral foundation cards with accent-ready emphasis.
           </Text>
         </Box>
         <Flex direction="column" gap="4">
@@ -28,7 +28,7 @@ export const Variants: Story = {
               Subtle Card
             </Text>
             <Text fontSize="sm" color="text.muted">
-              A minimal card style with no shadow, using subtle border and flat background.
+              Gentle separation from the base layer with minimal elevation.
             </Text>
           </Box>
           <Box css={recipe({ variant: 'elevated' })}>
@@ -36,7 +36,7 @@ export const Variants: Story = {
               Elevated Card
             </Text>
             <Text fontSize="sm" color="text.muted">
-              The default card style with gradient background and medium shadow for depth.
+              Stronger elevation and border emphasis for primary surfaces.
             </Text>
           </Box>
           <Box css={recipe({ variant: 'outline' })}>
@@ -44,7 +44,7 @@ export const Variants: Story = {
               Outline Card
             </Text>
             <Text fontSize="sm" color="text.muted">
-              A transparent card with strong border emphasis, no background or shadow.
+              Transparent layout container with border-only structure.
             </Text>
           </Box>
           <Box css={recipe({ variant: 'glow' })}>
@@ -52,7 +52,7 @@ export const Variants: Story = {
               Glow Card
             </Text>
             <Text fontSize="sm" color="text.muted">
-              An elevated card with primary-colored border and glow effect for emphasis.
+              Highlighted card with restrained accent glow for attention.
             </Text>
           </Box>
         </Flex>
@@ -72,7 +72,7 @@ export const Sizes: Story = {
             Card Sizes
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Different padding and border radius sizes
+            Compact to spacious spacing with the same neutral depth system.
           </Text>
         </Box>
         <Flex direction="column" gap="4">
@@ -81,7 +81,7 @@ export const Sizes: Story = {
               Small Card
             </Text>
             <Text fontSize="xs" color="text.muted">
-              Compact padding for tight layouts.
+              Compact padding for dense views.
             </Text>
           </Box>
           <Box css={recipe({ size: 'md' })}>
@@ -89,7 +89,7 @@ export const Sizes: Story = {
               Medium Card
             </Text>
             <Text fontSize="sm" color="text.muted">
-              Standard padding for most use cases.
+              Balanced spacing for standard content blocks.
             </Text>
           </Box>
           <Box css={recipe({ size: 'lg' })}>
@@ -97,7 +97,7 @@ export const Sizes: Story = {
               Large Card
             </Text>
             <Text fontSize="base" color="text.muted">
-              Generous padding for featured content.
+              Roomy spacing for feature content.
             </Text>
           </Box>
         </Flex>
@@ -119,7 +119,7 @@ export const WithContent: Story = {
             Cards with Content
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Examples of cards with typical content patterns
+            Composition examples showing content tiers and action hierarchy.
           </Text>
         </Box>
         <Flex direction="column" gap="4" maxWidth="600px">
@@ -128,7 +128,7 @@ export const WithContent: Story = {
               Game Settings
             </Text>
             <Text fontSize="sm" color="text.muted" mb="4">
-              Configure your gameplay preferences and difficulty level.
+              Adjust gameplay options with clearly tiered actions.
             </Text>
             <Flex gap="2">
               <Box
@@ -161,7 +161,7 @@ export const WithContent: Story = {
               </Box>
             </Flex>
             <Text fontSize="sm" color="text.muted">
-              You've completed 10 puzzles in a row!
+              You completed ten puzzles in a row.
             </Text>
           </Box>
         </Flex>

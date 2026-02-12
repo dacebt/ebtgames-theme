@@ -9,61 +9,68 @@ export const buttonRecipe = defineRecipe({
     py: 'sm',
     borderWidth: 'base',
     borderStyle: 'solid',
-    borderColor: 'border.strong',
-    background: 'linear-gradient(145deg, var(--color-surface-1), var(--color-surface-0))',
+    borderColor: 'border.soft',
+    background:
+      'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
     color: 'text.primary',
     cursor: 'pointer',
     pointerEvents: 'auto',
     userSelect: 'none',
-    transition: 'all 200ms ease',
+    transition: 'transform 160ms var(--easing-default), box-shadow 180ms var(--easing-default), border-color 180ms var(--easing-default), background 180ms var(--easing-default)',
     textTransform: 'uppercase',
     letterSpacing: 'tight',
     fontWeight: 'medium',
     borderRadius: 'md',
-    boxShadow: 'var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+    boxShadow: 'button.base',
 
     _disabled: {
       opacity: 0.5,
       cursor: 'not-allowed',
+      transform: 'none',
+      boxShadow: 'button.base',
     },
 
     _focusVisible: {
-      outline: 'var(--border-width-base) solid var(--color-interactive-primary)',
-      outlineOffset: 'var(--border-width-base)',
+      outline: 'none',
+      boxShadow: 'focus.primary, button.base',
     },
   },
   variants: {
     variant: {
       primary: {
-        borderColor: 'primary',
+        borderColor: 'primary.DEFAULT',
         color: 'primary',
 
         _hover: {
-          background: 'linear-gradient(145deg, var(--color-interactive-primary-hover), var(--color-interactive-primary))',
+          background:
+            'linear-gradient(145deg, var(--color-interactive-primary-hover), var(--color-interactive-primary))',
+          borderColor: 'primary.hover',
           color: 'surface.0',
-          boxShadow: 'var(--shadow-md), var(--shadow-glow-primary-lg)',
-          transform: 'translateY(-2px)',
+          boxShadow: 'button.hover',
+          transform: 'translateY(-1px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--shadow-xs), var(--shadow-glow-primary)',
+          boxShadow: 'button.active',
         },
       },
       secondary: {
-        borderColor: 'utility',
+        borderColor: 'utility.DEFAULT',
         color: 'utility',
 
         _hover: {
-          background: 'linear-gradient(145deg, var(--color-interactive-secondary), var(--color-interactive-secondary-hover))',
+          background:
+            'linear-gradient(145deg, var(--color-interactive-secondary), var(--color-interactive-secondary-hover))',
+          borderColor: 'utility.hover',
           color: 'surface.0',
-          boxShadow: 'var(--shadow-md), var(--shadow-glow-secondary-lg)',
-          transform: 'translateY(-2px)',
+          boxShadow: 'button.hover',
+          transform: 'translateY(-1px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--shadow-xs), var(--shadow-glow-secondary)',
+          boxShadow: 'button.active',
         },
       },
       danger: {
@@ -72,14 +79,15 @@ export const buttonRecipe = defineRecipe({
 
         _hover: {
           background: 'linear-gradient(145deg, var(--color-status-error), var(--color-status-error))',
+          borderColor: 'status.error',
           color: 'surface.0',
-          boxShadow: 'var(--shadow-md), var(--shadow-glow-error)',
-          transform: 'translateY(-2px)',
+          boxShadow: 'button.hover',
+          transform: 'translateY(-1px)',
         },
 
         _active: {
           transform: 'translateY(0)',
-          boxShadow: 'var(--shadow-xs), var(--shadow-glow-error)',
+          boxShadow: 'button.active',
         },
       },
     },

@@ -42,6 +42,8 @@ export const colors = defineTokens.colors({
   border: {
     subtle: { value: 'var(--color-border-subtle)' },
     strong: { value: 'var(--color-border-strong)' },
+    soft: { value: 'var(--color-border-soft)' },
+    contrast: { value: 'var(--color-border-contrast)' },
   },
 
   // Status Colors
@@ -58,6 +60,8 @@ export const colors = defineTokens.colors({
     light: { value: 'var(--color-overlay-light)' }, // Selected
     medium: { value: 'var(--color-overlay-medium)' }, // Active
     heavy: { value: 'var(--color-overlay-heavy)' }, // Emphasis
+    primarySoft: { value: 'var(--color-overlay-primary-soft)' },
+    secondarySoft: { value: 'var(--color-overlay-secondary-soft)' },
     error: { value: 'var(--color-overlay-error)' }, // Error tint
     backdrop: {
       light: { value: 'var(--color-overlay-backdrop-light)' },

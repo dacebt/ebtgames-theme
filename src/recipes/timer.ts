@@ -12,10 +12,11 @@ export const timerRecipe = defineRecipe({
     paddingX: 'md',
     borderWidth: 'base',
     borderStyle: 'solid',
-    borderColor: 'border.strong',
-    background: 'surface.1',
+    borderColor: 'border.contrast',
+    background:
+      'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
     borderRadius: 'md',
-    boxShadow: 'var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+    boxShadow: 'var(--shadow-elevation-1), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
     justifyContent: 'center',
   },
 })

@@ -81,7 +81,7 @@ export const Default: Story = {
             Accordion
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Collapsible sections for organizing content
+            Collapsible sections with clear panel separation
           </Text>
         </Box>
         <Box css={styles.root} maxWidth="600px">
@@ -121,7 +121,7 @@ export const DefaultOpen: Story = {
             Default Open State
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Some sections can start in an open state
+            Sections can initialize open to emphasize priority content
           </Text>
         </Box>
         <Box css={styles.root} maxWidth="600px">
@@ -157,7 +157,7 @@ export const WithRichContent: Story = {
             Rich Content
           </Text>
           <Text fontSize="sm" color="text.muted" mb="4">
-            Accordion sections can contain complex content
+            Complex content still keeps neutral depth and readable hierarchy
           </Text>
         </Box>
         <Box css={accordionStyles.root} maxWidth="600px">

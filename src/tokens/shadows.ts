@@ -10,6 +10,11 @@ export const shadows = defineTokens.shadows({
   md: { value: 'var(--shadow-md)' },
   lg: { value: 'var(--shadow-lg)' },
   xl: { value: 'var(--shadow-xl)' },
+  elevation: {
+    1: { value: 'var(--shadow-elevation-1)' },
+    2: { value: 'var(--shadow-elevation-2)' },
+    3: { value: 'var(--shadow-elevation-3)' },
+  },
 
   // Glow shadows (primary - purple)
   glow: {
@@ -40,5 +45,12 @@ export const shadows = defineTokens.shadows({
     primary: { value: 'var(--shadow-inset-primary)' },
     subtle: { value: 'var(--shadow-inset-subtle)' },
     deep: { value: 'var(--shadow-inset-deep)' },
+  },
+  focus: {
+    primary: { value: 'var(--shadow-focus-ring-primary)' },
+    secondary: { value: 'var(--shadow-focus-ring-secondary)' },
+  },
+  press: {
+    inset: { value: 'var(--shadow-press-inset)' },
   },
 })

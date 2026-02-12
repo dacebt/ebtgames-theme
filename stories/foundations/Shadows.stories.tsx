@@ -18,13 +18,13 @@ const depthShadows = [
 ]
 
 const glowShadows = [
-  { name: 'primary', var: '--shadow-glow-primary', color: 'Purple' },
-  { name: 'primary-lg', var: '--shadow-glow-primary-lg', color: 'Purple (large)' },
-  { name: 'secondary', var: '--shadow-glow-secondary', color: 'Teal' },
-  { name: 'secondary-lg', var: '--shadow-glow-secondary-lg', color: 'Teal (large)' },
-  { name: 'accent', var: '--shadow-glow-accent', color: 'Rose' },
-  { name: 'accent-lg', var: '--shadow-glow-accent-lg', color: 'Rose (large)' },
-  { name: 'error', var: '--shadow-glow-error', color: 'Error' },
+  { name: 'primary', var: '--shadow-glow-primary', color: 'Primary Accent' },
+  { name: 'primary-lg', var: '--shadow-glow-primary-lg', color: 'Primary Accent (large)' },
+  { name: 'secondary', var: '--shadow-glow-secondary', color: 'Utility Accent' },
+  { name: 'secondary-lg', var: '--shadow-glow-secondary-lg', color: 'Utility Accent (large)' },
+  { name: 'accent', var: '--shadow-glow-accent', color: 'Emphasis Accent' },
+  { name: 'accent-lg', var: '--shadow-glow-accent-lg', color: 'Emphasis Accent (large)' },
+  { name: 'error', var: '--shadow-glow-error', color: 'Error Accent' },
 ]
 
 const insetShadows = [
@@ -41,7 +41,7 @@ export const DepthShadows: Story = {
           Depth Shadows
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Layered shadows for elevation hierarchy
+          Neutral elevation shadows for structural depth hierarchy
         </Text>
       </Box>
       <Grid templateColumns="repeat(auto-fill, minmax(150px, 1fr))" gap="6">
@@ -147,7 +147,7 @@ export const CombinedShadows: Story = {
           Combined Shadows
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Depth + glow combinations for rich effects
+          Depth and accent glow combinations for guided emphasis
         </Text>
       </Box>
       <Grid templateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap="6">
@@ -223,7 +223,7 @@ export const ShadowElevation: Story = {
           Elevation System
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Progressive elevation with shadows and surface colors
+          Neutral elevation sample: base canvas to overlay containers
         </Text>
       </Box>
       <Flex gap="4" align="flex-end" flexWrap="wrap">
@@ -231,29 +231,35 @@ export const ShadowElevation: Story = {
           w="120px"
           h="60px"
           bg="surface.0"
+          borderWidth="thin"
+          borderColor="border.subtle"
           borderRadius="md"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontSize="xs" color="text.muted">Base</Text>
+          <Text fontSize="xs" color="text.muted">Canvas</Text>
         </Box>
         <Box
           w="120px"
           h="70px"
           bg="surface.1"
+          borderWidth="thin"
+          borderColor="border.subtle"
           borderRadius="md"
           boxShadow="var(--shadow-xs)"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontSize="xs" color="text.muted">Raised</Text>
+          <Text fontSize="xs" color="text.muted">Panel</Text>
         </Box>
         <Box
           w="120px"
           h="80px"
           bg="surface.2"
+          borderWidth="thin"
+          borderColor="border.strong"
           borderRadius="md"
           boxShadow="var(--shadow-sm)"
           display="flex"
@@ -265,26 +271,30 @@ export const ShadowElevation: Story = {
         <Box
           w="120px"
           h="90px"
-          bg="surface.2"
+          bg="surface.3"
+          borderWidth="thin"
+          borderColor="border.strong"
           borderRadius="md"
           boxShadow="var(--shadow-md)"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontSize="xs" color="text.muted">Dropdown</Text>
+          <Text fontSize="xs" color="text.primary">Popover</Text>
         </Box>
         <Box
           w="120px"
           h="100px"
-          bg="surface.2"
+          bg="surface.3"
+          borderWidth="thin"
+          borderColor="border.strong"
           borderRadius="md"
           boxShadow="var(--shadow-lg)"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontSize="xs" color="text.muted">Modal</Text>
+          <Text fontSize="xs" color="text.primary">Modal</Text>
         </Box>
       </Flex>
     </Flex>

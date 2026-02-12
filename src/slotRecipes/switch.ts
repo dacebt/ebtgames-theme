@@ -23,7 +23,6 @@ export const switchSlotRecipe = defineSlotRecipe({
       color: 'text.primary',
       textTransform: 'uppercase',
       letterSpacing: 'wide',
-      textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)',
       userSelect: 'none',
     },
     control: {
@@ -35,25 +34,26 @@ export const switchSlotRecipe = defineSlotRecipe({
       borderRadius: 'full',
       borderWidth: 'base',
       borderStyle: 'solid',
-      borderColor: 'border.strong',
+      borderColor: 'border.soft',
       background:
-        'linear-gradient(140deg, var(--color-surface-2), var(--color-surface-1) 50%, var(--color-surface-0))',
-      boxShadow: 'var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+        'linear-gradient(145deg, var(--color-surface-control-top), var(--color-surface-control-bottom))',
+      boxShadow: 'var(--shadow-elevation-1), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
       transition: 'all 200ms ease',
       cursor: 'pointer',
       _checked: {
-        borderColor: 'primary',
+        borderColor: 'primary.DEFAULT',
         background:
-          'linear-gradient(140deg, var(--color-interactive-primary-hover), var(--color-interactive-primary))',
-        boxShadow: 'var(--shadow-md), var(--shadow-glow-primary), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+          'linear-gradient(145deg, var(--color-interactive-primary-hover), var(--color-interactive-primary))',
+        boxShadow:
+          'var(--shadow-elevation-2), var(--shadow-glow-primary), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
       },
     },
     thumb: {
       width: 'var(--switch-height)',
       height: 'var(--switch-height)',
       borderRadius: 'full',
-      background: 'surface.0',
-      boxShadow: 'var(--shadow-sm)',
+      background: 'surface.1',
+      boxShadow: 'var(--shadow-elevation-1)',
       transitionProperty: 'translate',
       transitionDuration: 'fast',
       _checked: {

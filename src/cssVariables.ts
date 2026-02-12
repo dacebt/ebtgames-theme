@@ -14,47 +14,55 @@
 // ============================================================================
 
 export const colorVariables = {
-  // Surface Colors (deep purple monochrome)
-  '--color-surface-0': '#1B0F26', // Base background - darkest
-  '--color-surface-1': '#24122F', // Elevated surfaces
-  '--color-surface-2': '#2B173A', // Cards/panels
-  '--color-surface-3': '#342046', // Raised/hover states
+  // Surface Colors (neutral dark foundation)
+  '--color-surface-0': '#0F1216', // Base background - darkest
+  '--color-surface-1': '#18202A', // Elevated surfaces
+  '--color-surface-2': '#222C38', // Cards/panels
+  '--color-surface-3': '#2F3B4A', // Raised/hover states
+  '--color-surface-card-top': '#31364A', // subtle purple cast
+  '--color-surface-card-bottom': '#232B39',
+  '--color-surface-control-top': '#2A3341',
+  '--color-surface-control-bottom': '#1E2632',
 
   // Text Colors (WCAG AA verified against surface-0)
-  '--color-text-primary': '#F5F1FA', // 16.49:1 contrast
-  '--color-text-secondary': '#D8D0E3', // 12.29:1 contrast
-  '--color-text-muted': '#B9AEC9', // 8.72:1 contrast
-  '--color-text-disabled': '#9E92B4', // 6.32:1 contrast
+  '--color-text-primary': '#F3F6FB',
+  '--color-text-secondary': '#D7DEE9',
+  '--color-text-muted': '#AAB6C5',
+  '--color-text-disabled': '#7F8A99',
 
   // Interactive - Primary (Purple)
-  '--color-interactive-primary': '#7C5BD6',
-  '--color-interactive-primary-hover': '#6F4FCB',
+  '--color-interactive-primary': '#9B7CFF',
+  '--color-interactive-primary-hover': '#8A6EF0',
 
   // Interactive - Secondary (Teal)
-  '--color-interactive-secondary': '#2AB9B0',
-  '--color-interactive-secondary-hover': '#52D6CC',
+  '--color-interactive-secondary': '#34CBBF',
+  '--color-interactive-secondary-hover': '#5DD9CF',
 
   // Interactive - Accent (Rose)
-  '--color-interactive-accent': '#D86B9A',
+  '--color-interactive-accent': '#E282AE',
 
   // Border Colors
-  '--color-border-subtle': '#3A3341',
-  '--color-border-strong': '#4A4354',
+  '--color-border-subtle': '#334051',
+  '--color-border-strong': '#5D6D84',
+  '--color-border-soft': '#465365',
+  '--color-border-contrast': '#748AA4',
 
   // Status Colors
-  '--color-status-success': '#2AB9B0', // Teal
-  '--color-status-warning': '#D9A24F', // Amber
-  '--color-status-error': '#D8524D', // Red
-  '--color-status-info': '#7C5BD6', // Purple
+  '--color-status-success': '#34CBBF', // Teal
+  '--color-status-warning': '#E0AD5D', // Amber
+  '--color-status-error': '#E26662', // Red
+  '--color-status-info': '#9B7CFF', // Purple
 
-  // Overlay Colors (purple-based transparency)
-  '--color-overlay-subtle': 'rgba(124, 91, 214, 0.05)', // Hover tint
-  '--color-overlay-light': 'rgba(124, 91, 214, 0.1)', // Selected
-  '--color-overlay-medium': 'rgba(124, 91, 214, 0.15)', // Active
-  '--color-overlay-heavy': 'rgba(124, 91, 214, 0.25)', // Emphasis
-  '--color-overlay-error': 'rgba(216, 82, 77, 0.12)', // Error tint
-  '--color-overlay-backdrop-light': 'rgba(27, 15, 38, 0.8)',
-  '--color-overlay-backdrop-heavy': 'rgba(27, 15, 38, 0.95)',
+  // Overlay Colors (neutral transparency with accent overlays)
+  '--color-overlay-subtle': 'rgba(255, 255, 255, 0.03)', // Hover tint
+  '--color-overlay-light': 'rgba(255, 255, 255, 0.06)', // Selected
+  '--color-overlay-medium': 'rgba(255, 255, 255, 0.1)', // Active
+  '--color-overlay-heavy': 'rgba(255, 255, 255, 0.16)', // Emphasis
+  '--color-overlay-primary-soft': 'rgba(155, 124, 255, 0.12)',
+  '--color-overlay-secondary-soft': 'rgba(52, 203, 191, 0.12)',
+  '--color-overlay-error': 'rgba(226, 102, 98, 0.14)', // Error tint
+  '--color-overlay-backdrop-light': 'rgba(10, 12, 16, 0.78)',
+  '--color-overlay-backdrop-heavy': 'rgba(10, 12, 16, 0.9)',
 } as const
 
 // ============================================================================
@@ -136,31 +144,40 @@ export const shadowVariables = {
   '--shadow-lg': '0 8px 24px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5)',
   '--shadow-xl':
     '0 16px 48px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.6)',
+  '--shadow-elevation-1':
+    '0 1px 2px rgba(0, 0, 0, 0.36), 0 3px 8px rgba(0, 0, 0, 0.22)',
+  '--shadow-elevation-2':
+    '0 6px 16px rgba(0, 0, 0, 0.32), 0 2px 6px rgba(0, 0, 0, 0.2)',
+  '--shadow-elevation-3':
+    '0 12px 28px rgba(0, 0, 0, 0.36), 0 6px 14px rgba(0, 0, 0, 0.24)',
 
   // Glow shadows - Primary (Purple)
-  '--shadow-glow-primary': '0 0 10px rgba(124, 91, 214, 0.4)',
+  '--shadow-glow-primary': '0 0 10px rgba(155, 124, 255, 0.24)',
   '--shadow-glow-primary-lg':
-    '0 0 20px rgba(124, 91, 214, 0.5), 0 0 40px rgba(124, 91, 214, 0.3)',
+    '0 0 20px rgba(155, 124, 255, 0.3), 0 0 40px rgba(155, 124, 255, 0.18)',
   '--shadow-glow-primary-xl':
-    '0 0 30px rgba(124, 91, 214, 0.6), 0 0 60px rgba(124, 91, 214, 0.4)',
+    '0 0 30px rgba(155, 124, 255, 0.38), 0 0 60px rgba(155, 124, 255, 0.24)',
 
   // Glow shadows - Secondary (Teal)
-  '--shadow-glow-secondary': '0 0 10px rgba(42, 185, 176, 0.3)',
+  '--shadow-glow-secondary': '0 0 10px rgba(52, 203, 191, 0.2)',
   '--shadow-glow-secondary-lg':
-    '0 0 20px rgba(42, 185, 176, 0.4), 0 0 40px rgba(42, 185, 176, 0.2)',
+    '0 0 20px rgba(52, 203, 191, 0.28), 0 0 40px rgba(52, 203, 191, 0.15)',
 
   // Glow shadows - Accent (Rose)
-  '--shadow-glow-accent': '0 0 10px rgba(216, 107, 154, 0.3)',
+  '--shadow-glow-accent': '0 0 10px rgba(226, 130, 174, 0.2)',
   '--shadow-glow-accent-lg':
-    '0 0 20px rgba(216, 107, 154, 0.4), 0 0 40px rgba(216, 107, 154, 0.2)',
+    '0 0 20px rgba(226, 130, 174, 0.28), 0 0 40px rgba(226, 130, 174, 0.15)',
 
   // Glow shadows - Error
-  '--shadow-glow-error': '0 0 10px rgba(216, 82, 77, 0.4)',
+  '--shadow-glow-error': '0 0 10px rgba(226, 102, 98, 0.24)',
+  '--shadow-focus-ring-primary': '0 0 0 2px rgba(155, 124, 255, 0.55)',
+  '--shadow-focus-ring-secondary': '0 0 0 2px rgba(52, 203, 191, 0.55)',
 
   // Inset shadows
-  '--shadow-inset-primary': 'inset 0 0 10px rgba(124, 91, 214, 0.3)',
+  '--shadow-inset-primary': 'inset 0 0 10px rgba(155, 124, 255, 0.18)',
   '--shadow-inset-subtle': 'inset 0 1px 3px rgba(0, 0, 0, 0.3)',
   '--shadow-inset-deep': 'inset 0 2px 8px rgba(0, 0, 0, 0.5)',
+  '--shadow-press-inset': 'inset 0 2px 6px rgba(0, 0, 0, 0.45)',
 } as const
 
 // ============================================================================

@@ -42,7 +42,7 @@ export const Default: Story = {
           Switch
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Toggle switch for boolean settings
+          Binary control with neutral track and accent active state
         </Text>
       </Box>
       <Flex direction="column" gap="md">
@@ -61,7 +61,7 @@ export const Interactive: Story = {
           Interactive Switch
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Click to toggle states
+          Click to observe layer and state transitions
         </Text>
       </Box>
       <SwitchDemo label="Click me to toggle" />
@@ -77,7 +77,7 @@ export const SettingsExample: Story = {
           Settings Panel
         </Text>
         <Text fontSize="sm" color="text.muted" mb="4">
-          Switches in a typical settings context
+          Switches in a neutral layered settings surface
         </Text>
       </Box>
       <Box p="lg" bg="surface.1" borderRadius="md">

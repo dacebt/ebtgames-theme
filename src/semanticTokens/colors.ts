@@ -19,5 +19,7 @@ export const semanticColors = defineSemanticTokens.colors({
   border: {
     subtle: { value: '{colors.border.subtle}' },
     strong: { value: '{colors.border.strong}' },
+    control: { value: '{colors.border.soft}' },
+    emphasis: { value: '{colors.border.contrast}' },
   },
 })

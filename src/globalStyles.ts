@@ -33,8 +33,8 @@ export const globalCss = defineGlobalStyles({
     position: 'fixed',
     inset: 0,
     backgroundImage: `
-      radial-gradient(circle at 20% 50%, rgba(124, 91, 214, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(42, 185, 176, 0.02) 0%, transparent 50%)
+      radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(155, 124, 255, 0.03) 0%, transparent 45%)
     `,
     pointerEvents: 'none',
     zIndex: 0,

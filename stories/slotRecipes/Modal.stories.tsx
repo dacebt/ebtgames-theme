@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Box, Flex, Text, useSlotRecipe, useRecipe } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 
 const meta: Meta = {
   title: 'Slot Recipes/Modal',
@@ -8,6 +8,21 @@ const meta: Meta = {
 
 export default meta
 type Story = StoryObj
+
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  const selector = [
+    'button:not([disabled])',
+    '[href]',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',')
+
+  return Array.from(container.querySelectorAll<HTMLElement>(selector)).filter(
+    (el) => !el.hasAttribute('aria-hidden'),
+  )
+}
 
 const Modal = ({
   isOpen,
@@ -24,18 +39,102 @@ const Modal = ({
 }) => {
   const recipe = useSlotRecipe({ key: 'modal' })
   const styles = recipe()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null)
+  const titleId = useId()
+  const contentId = useId()
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null
+
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    const focusable = getFocusableElements(dialog)
+    ;(focusable[0] ?? dialog).focus()
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!dialogRef.current) return
+
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        onClose()
+        return
+      }
+
+      if (event.key !== 'Tab') return
+
+      const elements = getFocusableElements(dialogRef.current)
+      if (elements.length === 0) {
+        event.preventDefault()
+        dialogRef.current.focus()
+        return
+      }
+
+      const first = elements[0]
+      const last = elements[elements.length - 1]
+      const active = document.activeElement as HTMLElement | null
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault()
+        last.focus()
+        return
+      }
+
+      if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      if (previouslyFocusedRef.current && document.contains(previouslyFocusedRef.current)) {
+        previouslyFocusedRef.current.focus()
+      }
+    }
+  }, [isOpen, onClose])
 
   if (!isOpen) return null
 
   return (
     <Box css={styles.backdrop} onClick={onClose}>
-      <Box css={styles.modal} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+      <Box
+        ref={dialogRef}
+        css={styles.modal}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={contentId}
+        tabIndex={-1}
+      >
         <Box css={styles.header}>
-          <Text as="h2" css={styles.title}>
+          <Text as="h2" css={styles.title} id={titleId}>
             {title}
           </Text>
+          <Box
+            as="button"
+            type="button"
+            onClick={onClose}
+            aria-label="Close modal"
+            px="sm"
+            py="xs"
+            borderWidth="thin"
+            borderStyle="solid"
+            borderColor="border.subtle"
+            borderRadius="sm"
+            color="text.primary"
+            backgroundColor="surface.1"
+          >
+            Close
+          </Box>
         </Box>
-        <Box css={styles.content}>
+        <Box css={styles.content} id={contentId}>
           {children}
         </Box>
         {footer && (
@@ -60,23 +159,27 @@ export const Basic: Story = {
 
     return (
       <Flex direction="column" gap="6">
-        <Box>
-          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-            Basic Modal
-          </Text>
-          <Text fontSize="sm" color="text.muted" mb="4">
-            A simple modal dialog with header and content
-          </Text>
-        </Box>
-        <Box>
-          <Box
-            as="button"
-            css={buttonRecipe({ variant: 'primary' })}
-            px="lg"
-            py="sm"
-            onClick={() => setIsOpen(true)}
-          >
-            Open Modal
+        <Box aria-hidden={isOpen}>
+          <Box>
+            <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+              Basic Modal
+            </Text>
+            <Text fontSize="sm" color="text.muted" mb="4">
+              A neutral overlay with clear backdrop-to-content separation
+            </Text>
+          </Box>
+          <Box>
+            <Box
+              as="button"
+              css={buttonRecipe({ variant: 'primary' })}
+              px="lg"
+              py="sm"
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(true)}
+            >
+              Open Modal
+            </Box>
           </Box>
         </Box>
         <Modal
@@ -85,8 +188,7 @@ export const Basic: Story = {
           title="Welcome"
         >
           <Text fontSize="base" color="text.primary" mb="3">
-            This is a basic modal dialog. It has a backdrop that can be clicked to close,
-            and a centered modal container with header and content.
+            This modal uses layered neutrals to separate backdrop, shell, and body content.
           </Text>
           <Text fontSize="sm" color="text.muted">
             Click anywhere outside the modal or press the button below to close.
@@ -104,23 +206,27 @@ export const WithActions: Story = {
 
     return (
       <Flex direction="column" gap="6">
-        <Box>
-          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-            Modal with Actions
-          </Text>
-          <Text fontSize="sm" color="text.muted" mb="4">
-            Modal with footer containing action buttons
-          </Text>
-        </Box>
-        <Box>
-          <Box
-            as="button"
-            css={buttonRecipe({ variant: 'primary' })}
-            px="lg"
-            py="sm"
-            onClick={() => setIsOpen(true)}
-          >
-            Open Modal
+        <Box aria-hidden={isOpen}>
+          <Box>
+            <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+              Modal with Actions
+            </Text>
+            <Text fontSize="sm" color="text.muted" mb="4">
+              Footer actions use accent intent on top of neutral structure
+            </Text>
+          </Box>
+          <Box>
+            <Box
+              as="button"
+              css={buttonRecipe({ variant: 'primary' })}
+              px="lg"
+              py="sm"
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(true)}
+            >
+              Open Modal
+            </Box>
           </Box>
         </Box>
         <Modal
@@ -173,23 +279,27 @@ export const WithForm: Story = {
 
     return (
       <Flex direction="column" gap="6">
-        <Box>
-          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-            Modal with Form
-          </Text>
-          <Text fontSize="sm" color="text.muted" mb="4">
-            Modal containing form inputs and structured content
-          </Text>
-        </Box>
-        <Box>
-          <Box
-            as="button"
-            css={buttonRecipe({ variant: 'primary' })}
-            px="lg"
-            py="sm"
-            onClick={() => setIsOpen(true)}
-          >
-            Open Settings
+        <Box aria-hidden={isOpen}>
+          <Box>
+            <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+              Modal with Form
+            </Text>
+            <Text fontSize="sm" color="text.muted" mb="4">
+              Form layout with layered sections and restrained accents
+            </Text>
+          </Box>
+          <Box>
+            <Box
+              as="button"
+              css={buttonRecipe({ variant: 'primary' })}
+              px="lg"
+              py="sm"
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(true)}
+            >
+              Open Settings
+            </Box>
           </Box>
         </Box>
         <Modal
@@ -221,11 +331,19 @@ export const WithForm: Story = {
         >
           <Flex direction="column" gap="4">
             <Box>
-              <Text fontSize="sm" color="text.primary" fontWeight="medium" mb="2">
+              <Text
+                as="label"
+                htmlFor="modal-player-name"
+                fontSize="sm"
+                color="text.primary"
+                fontWeight="medium"
+                mb="2"
+              >
                 Player Name
               </Text>
               <Box
                 as="input"
+                id="modal-player-name"
                 css={inputRecipe()}
                 placeholder="Enter your name"
                 defaultValue="Player 1"
@@ -276,23 +394,27 @@ export const DangerModal: Story = {
 
     return (
       <Flex direction="column" gap="6">
-        <Box>
-          <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
-            Danger Modal
-          </Text>
-          <Text fontSize="sm" color="text.muted" mb="4">
-            Modal for destructive or warning actions
-          </Text>
-        </Box>
-        <Box>
-          <Box
-            as="button"
-            css={buttonRecipe({ variant: 'danger' })}
-            px="lg"
-            py="sm"
-            onClick={() => setIsOpen(true)}
-          >
-            Delete Game
+        <Box aria-hidden={isOpen}>
+          <Box>
+            <Text fontSize="xl" color="text.primary" fontFamily="display" mb="2">
+              Danger Modal
+            </Text>
+            <Text fontSize="sm" color="text.muted" mb="4">
+              Destructive confirmation with high-contrast separation cues
+            </Text>
+          </Box>
+          <Box>
+            <Box
+              as="button"
+              css={buttonRecipe({ variant: 'danger' })}
+              px="lg"
+              py="sm"
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(true)}
+            >
+              Delete Game
+            </Box>
           </Box>
         </Box>
         <Modal
